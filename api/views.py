@@ -1,6 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import generics, permissions
 from rest_framework.views import APIView
+from rest_framework.viewsets import ViewSet
+
 from .serializers import ItemListSerializer
 from .models import Item
 from .parsers import parse_scientific_ru
@@ -19,3 +21,9 @@ class GetNews(APIView):
 class ListNews(generics.ListAPIView):
     serializer_class = ItemListSerializer
     queryset = Item.objects.all()
+
+
+class TestView(ViewSet):
+    def test(self, request):
+        print(request.data)
+        return Response('h')
